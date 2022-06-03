@@ -1,22 +1,32 @@
+var currentIconEl = document.getElementById("current-icon");
+var currentTempEl = document.getElementById("current-temp");
+var currentConditionsEl = document.getElementById("current-conditions");
 
-// todaysWeatherEl
-// forecastEl
 var searchTextEl = document.getElementById("search-text");
 var searchButtonEl = document.getElementById("search-button");
 var forecastEl = document.getElementById("forecast");
 
 
 function buildForecast(data){
+  while (forecastEl.firstChild) {
+    forecastEl.removeChild(forecastEl.lastChild);
+  }
   for(i=0; i<5; i++){
-    var parentCard = document.createElement("div").classList.add("card");
-    var cardHeader = document.createElement("div").classList.add("card-header");
-    var weatherDataList = document.createElement("ul").classList.add("list-group list-group-flush");
+    var parentCard = document.createElement("div")
+    parentCard.classList.add("card");
+    var cardHeader = document.createElement("div")
+    cardHeader.classList.add("card-header");
+    var weatherDataList = document.createElement("ul")
+    weatherDataList.classList.add("list-group");
     var icon = document.createElement("img");
-    var iconHolder = document.createElement("li").classList.add("list-group-item");
-    var currentTemp = document.createElement("li").classList.add("list-group-item");
-    var currentConditions = document.createElement("li").classList.add("list-group-item");
-
-    currentTemp.textContent = data.daily[i].temp.day;
+    var iconHolder = document.createElement("li")
+    iconHolder.classList.add("list-group-item");
+    var currentTemp = document.createElement("li")
+    currentTemp.classList.add("list-group-item");
+    var currentConditions = document.createElement("li")
+    currentConditions.classList.add("list-group-item");
+    console.log(currentTemp);
+    currentTemp.innerHTML = "temp: " + data.daily[i].temp.day;
     currentConditions.textContent = data.daily[i].weather[0].main;
     icon.src = `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`
     cardHeader.textContent = "today's date"
@@ -50,6 +60,9 @@ function getWeather(city) {
     .then(function (data){
         console.log(data);
         buildForecast(data);
+        currentIconEl.src = `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`
+        currentTempEl.textContent = "current temp: " + data.current.temp;
+        currentConditionsEl.textContent = data.current.weather[0].main;
     })
   });
 } 
