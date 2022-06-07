@@ -1,10 +1,13 @@
 var currentIconEl = document.getElementById("current-icon");
 var currentTempEl = document.getElementById("current-temp");
 var currentConditionsEl = document.getElementById("current-conditions");
+var currentCityEl = document.getElementById("current-city");
 
 var searchTextEl = document.getElementById("search-text");
 var searchButtonEl = document.getElementById("search-button");
 var forecastEl = document.getElementById("forecast");
+
+var searchHistoryEl = document.getElementById("search-history");
 
 
 function buildForecast(data){
@@ -42,6 +45,7 @@ function buildForecast(data){
 
 
 function getWeather(city) {
+  currentCityEl.textContent = city;
   var geocodeAPI = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=ae034b29b1e2add7687fc20c94112cb6";
   var fetchWeather = fetch(geocodeAPI)
 .then(function (response) {
@@ -67,12 +71,35 @@ function getWeather(city) {
   });
 } 
 
-
+console.log(search);
+getHistory("");
 
 searchButtonEl.addEventListener("click", function(){
-  console.log(searchTextEl);
+
   var search = searchTextEl.value.trim();
-  
-  console.log(search);
   getWeather(search);
+  console.log(search);
+  getHistory(search);
 });
+
+function getHistory(search){
+  var pastSearches = JSON.parse(localStorage.getItem("searches")) || [];
+  if (search != ""){
+  pastSearches.push(search);
+  }
+  console.log(pastSearches);
+  localStorage.setItem("searches", JSON.stringify(pastSearches));
+  
+  searchHistoryEl.innerHTML = "";
+  for(i=0; i<pastSearches.length; i++) {
+    var historyButton = document.createElement("button");
+    historyButton.classList.add("history-button");
+    historyButton.addEventListener("click", function(event){
+      console.log(event.target.innerHTML);
+      getWeather(event.target.innerHTML);
+    });
+    historyButton.innerHTML = pastSearches[i];
+    searchHistoryEl.appendChild(historyButton);
+  }
+
+}

@@ -1,3 +1,19 @@
+*{
+    margin: 5px;
+}
+
+
 #current-weather{
     border: 2px solid black;
+}
+
+#search-history {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.history-button {
+    width: 75%;
+    margin: 5px;
 }
