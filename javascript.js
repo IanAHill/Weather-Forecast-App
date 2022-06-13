@@ -32,7 +32,7 @@ function buildForecast(data){
     currentTemp.innerHTML = "temp: " + data.daily[i].temp.day;
     currentConditions.textContent = data.daily[i].weather[0].main;
     icon.src = `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`
-    cardHeader.textContent = "today's date"
+    cardHeader.textContent = "Day " + (i + 1);
     iconHolder.appendChild(icon);
     weatherDataList.appendChild(currentTemp);
     weatherDataList.appendChild(currentConditions);
