@@ -29,7 +29,7 @@ function buildForecast(data){
     var currentConditions = document.createElement("li")
     currentConditions.classList.add("list-group-item");
     console.log(currentTemp);
-    currentTemp.innerHTML = "temp: " + data.daily[i].temp.day;
+    currentTemp.innerHTML = "High: " + data.daily[i].temp.day + "\u00B0 F";
     currentConditions.textContent = data.daily[i].weather[0].main;
     icon.src = `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`
     cardHeader.textContent = "Day " + (i + 1);
@@ -65,7 +65,7 @@ function getWeather(city) {
         console.log(data);
         buildForecast(data);
         currentIconEl.src = `https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`
-        currentTempEl.textContent = "current temp: " + data.current.temp;
+        currentTempEl.textContent = "Currently " + data.current.temp + "\u00B0 F";
         currentConditionsEl.textContent = data.current.weather[0].main;
     })
   });

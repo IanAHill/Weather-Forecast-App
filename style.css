@@ -1,10 +1,27 @@
 *{
+    /* margin: 5px; */
+    font-family: 'Quicksand', sans-serif;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+h1{
+    color: white;
+}
+h2{
+    color: white;
     margin: 5px;
 }
+body{
+    background-image: url("background.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
 
+}
 
 #current-weather{
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 
 #search-history {
@@ -17,3 +34,29 @@
     width: 75%;
     margin: 5px;
 }
+
+.card {
+    margin: 5px;
+}
+
+#search {
+    margin: 5px;
+}
+
+#current-weather{
+    margin: 5px;
+}
+
+
+
+
+@media(max-width:768px){
+    #search-history {
+      display: none;
+    }
+    #body{
+        flex-wrap: wrap;
+        
+    }
+
+  }
