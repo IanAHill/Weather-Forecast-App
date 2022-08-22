@@ -46,7 +46,7 @@ function buildForecast(data){
 
 function getWeather(city) {
   currentCityEl.textContent = city;
-  var geocodeAPI = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=ae034b29b1e2add7687fc20c94112cb6";
+  var geocodeAPI = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=ae034b29b1e2add7687fc20c94112cb6";
   var fetchWeather = fetch(geocodeAPI)
 .then(function (response) {
     return response.json();
@@ -64,7 +64,7 @@ function getWeather(city) {
     .then(function (data){
         console.log(data);
         buildForecast(data);
-        currentIconEl.src = `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`
+        currentIconEl.src = `https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`
         currentTempEl.textContent = "current temp: " + data.current.temp;
         currentConditionsEl.textContent = data.current.weather[0].main;
     })
