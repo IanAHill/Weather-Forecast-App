@@ -8,4 +8,4 @@ The API that is used is Open Weather's One Call API 1.0
 
 ![alt text](screenshot.png)
 
-[Weather Forecast App link:](https://ianahill.github.io/Weather-Forecast-App/)
+[Weather Forecast App link  

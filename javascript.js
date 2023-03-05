@@ -70,7 +70,7 @@ function getWeather(city) {
     })
   });
 } 
-
+ADDING VISUALAA!!~!~~
 console.log(search);
 getHistory("");
 
